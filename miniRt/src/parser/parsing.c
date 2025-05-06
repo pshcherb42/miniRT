@@ -14,7 +14,7 @@
 
 int     convert_parts(char **tokens, t_scene *scene)
 {
-
+    
 }
 
 int     store_tokens(char **tokens, t_scene *scene)

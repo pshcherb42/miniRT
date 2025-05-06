@@ -20,10 +20,19 @@
 # include <stdio.h>
 # include <unistd.h>
 
+// read_rt_file.c
 void    read_rt_file(const char *filename);
-int     id_element(char **tokens, t_scene *scene); // Determines element type and routes parsing
+void    process_line(char *line);
+
+// id_element.c
+int     id_element(char **tokens, t_scene *scene);
+int     parse_ambient(char **tokens, t_scene *scene);
+int     parse_objects(char **tokens, t_scene *scene);
+
 int     convert_parts(char **tokens, t_scene *scene); // Converts strings to numbers/vectors
 int     store_tokens(char **tokens, t_scene *scene);  // Allocates and saves object into scene
-void    free_tokens(char **tokens);              // Frees token array
+void    free_tokens(char **tokens);
+
+
 
 #endif 
