@@ -6,7 +6,7 @@
 /*   By: pshcherb <pshcherb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 11:22:53 by pshcherb          #+#    #+#             */
-/*   Updated: 2025/05/09 10:16:44 by pshcherb         ###   ########.fr       */
+/*   Updated: 2025/05/09 16:35:23 by pshcherb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,17 +42,9 @@ void    process_line(char *line, t_scene *scene)
         return;
     if (!id_element(tokens, scene))
     {
-        fprintf(stderr, "Error: unknown or invalid element in line: %s\n", line);
+        ft_printf("Error: Failed to identify or parse element in line: %s\n", line);
         free_tokens(tokens);
         return;
     }
-    /*if (!convert_parts(tokens, scene))
-    {
-        fprintf(stderr, "Error: failed to convert values in line: %s\n", line);
-        free_tokens(tokens);
-        return;
-    }
-    if (!store_tokens(tokens, scene))
-        fprintf(stderr, "Error: failed to store element from line: %s\n", line);*/
     free_tokens(tokens);
 }
