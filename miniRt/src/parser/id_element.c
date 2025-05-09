@@ -6,11 +6,12 @@
 /*   By: pshcherb <pshcherb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 14:17:32 by pshcherb          #+#    #+#             */
-/*   Updated: 2025/05/06 14:21:06 by pshcherb         ###   ########.fr       */
+/*   Updated: 2025/05/09 10:11:16 by pshcherb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/parser.h"
+#include "../../includes/scene.h"
 
 int     id_element(char **tokens, t_scene *scene)
 {
@@ -26,39 +27,21 @@ int     id_element(char **tokens, t_scene *scene)
 int parse_ambient(char **tokens, t_scene *scene)
 {
     if (strcmp(tokens[0], "A") == 0)
-    {
-        // handle ambient parsing later
-        return (1);
-    }
+        return (handle_ambient(tokens, scene));
     if (strcmp(tokens[0], "C") == 0)
-    {
-        // handle camera parsing later
-        return (1);
-    }
+        return (handle_camera(tokens, scene));
     if (strcmp(tokens[0], "L") == 0)
-    {
-        // handle light parsing later
-        return (1);
-    }
+        return (handle_light(tokens, scene));
     return (0);
 }
 
 int parse_objects(char **tokens, t_scene *scene)
 {
     if (strcmp(tokens[0], "sp") == 0)
-    {
-        // handle sphere parsing later
-        return (1);
-    }
+        return (handle_sphere(tokens, scene));
     if (strcmp(tokens[0], "pl") == 0)
-    {
-        // handle plane parsing later
-        return (1);
-    }
+        return (handle_plane(tokens, scene));
     if (strcmp(tokens[0], "cy") == 0)
-    {
-        // handle cylinder parsing later
-        return (1);
-    }
+        return (handle_cylinder(tokens, scene));
     return (0);
 }

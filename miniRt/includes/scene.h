@@ -6,13 +6,60 @@
 /*   By: pshcherb <pshcherb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 10:56:38 by pshcherb          #+#    #+#             */
-/*   Updated: 2025/05/06 12:58:43 by pshcherb         ###   ########.fr       */
+/*   Updated: 2025/05/09 10:01:26 by pshcherb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SCENE_H
 # define SCENE_H
 
+typedef struct  s_ambient {
+	double      	ratio;
+	t_color     	color;
+} t_ambient;
 
+typedef struct  s_camera {
+	t_vec3      	position;
+	t_vec3      	orientation;
+	double      	fov;
+} t_camera;
+
+typedef struct  s_light {
+	t_vec3      	position;
+	double      	brightness;
+	t_color     	color;
+} t_light;
+
+typedef struct  s_sphere {
+	t_vec3      	center;
+	double      	radius;
+	t_color     	color;
+	struct s_sphere *next;
+} t_sphere;
+
+typedef struct 	s_plane {
+	t_vec3 			point;
+	t_vec3 			normal;
+	t_color 		color;
+	struct s_plane *next;
+} t_plane;
+
+typedef struct s_cylinder {
+	t_vec3 				base;
+	t_vec3 				direction;
+	double 				radius;
+	double 				height;
+	t_color 			color;
+	struct s_cylinder 	*next;
+} t_cylinder;
+
+typedef struct s_scene {
+	t_ambient    ambient;
+	t_camera     camera;
+	t_light      *lights;
+	t_sphere     *spheres;
+	t_plane      *planes;
+	t_cylinder   *cylinders;
+} t_scene;
 
 #endif
