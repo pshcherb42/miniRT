@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   math_utils.h                                       :+:      :+:    :+:   */
+/*   vec3_math.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pshcherb <pshcherb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/06 10:56:28 by pshcherb          #+#    #+#             */
-/*   Updated: 2025/05/12 14:30:52 by pshcherb         ###   ########.fr       */
+/*   Created: 2025/05/12 14:14:48 by pshcherb          #+#    #+#             */
+/*   Updated: 2025/05/12 14:23:45 by pshcherb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MATH_UTILS_H
-# define MATH_UTILS_H
+#include "../../includes/math_utils.h"
 
-# include "parser.h"
+t_vec3 vec3_add(t_vec3 a, t_vec3 b)
+{
+    return ((t_vec3){
+        a.x + b.x,
+        a.y + b.y,
+        a.z + b.z
+    });
+}
 
-// vec3_add_sub.c
-t_vec3	vec3_add(t_vec3 a, t_vec3 b);
-t_vec3	vec3_sub(t_vec3 a, t_vec3 b);
+t_vec3 vec3_sub(t_vec3 a, t_vec3 b)
+{
+    return ((t_vec3){
+        a.x - b.x,
+        a.y - b.y,
+        a.z - b.z
+    });
+}
 
-// vec3_dot_cross.c
-double	vec3_dot(t_vec3 a, t_vec3 b);
-t_vec3	vec3_cross(t_vec3 a, t_vec3 b);
-
-// vec3_scalar_normal.c
-t_vec3	vec3_scale(t_vec3 v, double scalar);
-t_vec3	vec3_normalize(t_vec3 v);
-
-#endif

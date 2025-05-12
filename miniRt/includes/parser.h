@@ -6,7 +6,7 @@
 /*   By: pshcherb <pshcherb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 10:56:06 by pshcherb          #+#    #+#             */
-/*   Updated: 2025/05/12 12:58:49 by pshcherb         ###   ########.fr       */
+/*   Updated: 2025/05/12 14:22:39 by pshcherb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define PARSER_H
 
 # include "../libft/libft.h"
-# include "scene.h"
 # include "scene.h"
 # include <fcntl.h>
 # include <stdlib.h>

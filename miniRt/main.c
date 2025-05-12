@@ -1,8 +1,9 @@
 #include "includes/parser.h"
+#include "includes/math_utils.h"
 #include <stdio.h>
 #include <stdlib.h>
 
-static void initialize_scene(t_scene *scene)
+/*static void initialize_scene(t_scene *scene)
 {
     scene->ambient.ratio = 0.0;
     scene->ambient.color = (t_color){0, 0, 0};
@@ -106,4 +107,15 @@ int main(int argc, char **argv)
     print_scene(&scene);
 
     return (0);
+}*/
+
+int main()
+{
+    t_vec3 v = {1.0, 2.0, 3.0};
+    t_vec3 result = vec3_scale(v, 2.5);
+
+    printf("Original: (%f, %f, %f)\n", v.x, v.y, v.z);
+    printf("Escalado: (%f, %f, %f)\n", result.x, result.y, result.z);
+
+    return 0;
 }

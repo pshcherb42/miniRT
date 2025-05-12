@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   math_utils.h                                       :+:      :+:    :+:   */
+/*   vec3_scalar_normal.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pshcherb <pshcherb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/06 10:56:28 by pshcherb          #+#    #+#             */
-/*   Updated: 2025/05/12 14:30:52 by pshcherb         ###   ########.fr       */
+/*   Created: 2025/05/12 14:28:41 by pshcherb          #+#    #+#             */
+/*   Updated: 2025/05/12 14:31:44 by pshcherb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MATH_UTILS_H
-# define MATH_UTILS_H
+#include "../../includes/math_utils.h"
 
-# include "parser.h"
+t_vec3 vec3_scale(t_vec3 v, double scalar)
+{
+    return ((t_vec3){
+        v.x * scalar,
+        v.y * scalar,
+        v.z * scalar
+    });
+}
 
-// vec3_add_sub.c
-t_vec3	vec3_add(t_vec3 a, t_vec3 b);
-t_vec3	vec3_sub(t_vec3 a, t_vec3 b);
+t_vec3 vec3_normalize(t_vec3 v)
+{
+    double length;
 
-// vec3_dot_cross.c
-double	vec3_dot(t_vec3 a, t_vec3 b);
-t_vec3	vec3_cross(t_vec3 a, t_vec3 b);
-
-// vec3_scalar_normal.c
-t_vec3	vec3_scale(t_vec3 v, double scalar);
-t_vec3	vec3_normalize(t_vec3 v);
-
-#endif
+    length = vec3_length(v);
+    if (length == 0)
+        return ((t_vec3){0, 0, 0});
+    return vec3_scale(v, 1.0 / length);
+}

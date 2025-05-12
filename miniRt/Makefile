@@ -6,7 +6,7 @@
 #    By: pshcherb <pshcherb@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/06 10:54:27 by pshcherb          #+#    #+#              #
-#    Updated: 2025/05/12 14:07:36 by pshcherb         ###   ########.fr        #
+#    Updated: 2025/05/12 14:42:20 by pshcherb         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,9 @@ SRC = src/parser/read_rt_file.c \
 		src/parser/parse_objects.c \
 		src/parser/parse_ambient.c \
 		src/parser/parsing_utils.c \
+		src/math/vec3_add_sub.c \
+		src/math/vec3_dot_cross.c \
+		src/math/vec3_scalar_normal.c \
 		main.c \
 
 LIBFT = libft/libft.a
