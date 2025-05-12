@@ -6,66 +6,81 @@
 /*   By: pshcherb <pshcherb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:32:48 by pshcherb          #+#    #+#             */
-/*   Updated: 2025/05/09 16:26:28 by pshcherb         ###   ########.fr       */
+/*   Updated: 2025/05/12 11:18:49 by pshcherb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
-int	ft_isspace(char c)
+static const char	*skip_whitespace_and_sign(const char *str, int *sign)
 {
-	return (
-		c == ' '
-		|| c == '\t'
-		|| c == '\n'
-		|| c == '\v'
-		|| c == '\f'
-		|| c == '\r'
-	);
+	while (ft_isspace(*str))
+		str++;
+	if (*str == '-')
+	{
+		*sign = -1;
+		str++;
+	}
+	else if (*str == '+')
+		str++;
+	return (str);
 }
 
-int	ft_isdigit(int c)
+static double	parse_integer_part(const char **str)
 {
-	if (c >= '0' && c <= '9')
-		return (1);
-	else
-		return (0);
+	double	result;
+
+	result = 0.0;
+	while (ft_isdigit(**str))
+	{
+		result = (result * 10.0) + (**str - '0');
+		(*str)++;
+	}
+	return (result);
 }
 
-double	custom_atof(const char *str)
+static double	parse_fractional_part(const char **str)
 {
-	double 	result;
-	double 	fraction;
-	int		sign;
+	double	fraction;
+	double	result;
 
 	result = 0.0;
 	fraction = 1.0;
-	sign = 1;
-	while (ft_isspace(*str))
-        str++;
-	if (*str == '-')
-	    sign = -1;
-	while (ft_isdigit(*str++))
-        result = (result * 10.0) + (*str - '0');
-	if (*str == '.')
-    {
-        while (ft_isdigit(*str++))
-        {
-            fraction /= 10.0;
-            result += (*str - '0') * fraction;
-        }
-    }
-	return (result * sign);
+	if (**str == '.')
+	{
+		(*str)++;
+		while (ft_isdigit(**str))
+		{
+			fraction /= 10.0;
+			result += (**str - '0') * fraction;
+			(*str)++;
+		}
+	}
+	return (result);
 }
 
-#include <stdio.h>
-
-int main()
+static int	check_trailing_characters(const char *str)
 {
-    printf("Value: %f\n", custom_atof("42.5"));     // Output: Value: 42.500000
-    printf("Value: %f\n", custom_atof("-3.14"));    // Output: Value: -3.140000
-    printf("Value: %f\n", custom_atof("0.001"));    // Output: Value: 0.001000
-    printf("Value: %f\n", custom_atof("bad_input")); // Output: Error: Invalid double value: bad_input
-    printf("Value: %f\n", custom_atof("2.2.2"));    // Output: Error: Invalid double value: 2.2.2
-    printf("Value: %f\n", custom_atof("123abc"));   // Output: Error: Invalid double value: 123abc
+	if (*str != '\0' && !ft_isspace(*str))
+	{
+		ft_printf("Error: Invalid characters after number: %s\n", str);
+		return (0);
+	}
+	return (1);
+}
+
+double	ft_atof(const char *str)
+{
+	double	result;
+	double	decimal_part;
+	int		sign;
+
+	sign = 1;
+	str = skip_whitespace_and_sign(str, &sign);
+	result = parse_integer_part(&str);
+	decimal_part = parse_fractional_part(&str);
+	if (!check_trailing_characters(str))
+		return (0.0);
+	return ((result + decimal_part) * sign);
 }

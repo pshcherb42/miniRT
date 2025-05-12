@@ -6,7 +6,7 @@
 #    By: pshcherb <pshcherb@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/18 18:00:47 by pshcherb          #+#    #+#              #
-#    Updated: 2025/04/30 14:51:08 by pshcherb         ###   ########.fr        #
+#    Updated: 2025/05/12 11:08:26 by pshcherb         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ FLAGS = -Wall -Werror -Wextra
 
 SRCS =	get_next_line.c \
 	get_next_line_utils.c \
+	ft_atof.c \
 	ft_printf.c \
 	ft_printf_utils.c \
 	ft_array_count.c \

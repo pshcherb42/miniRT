@@ -6,12 +6,24 @@
 /*   By: pshcherb <pshcherb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 10:56:38 by pshcherb          #+#    #+#             */
-/*   Updated: 2025/05/09 13:42:03 by pshcherb         ###   ########.fr       */
+/*   Updated: 2025/05/12 12:37:16 by pshcherb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SCENE_H
 # define SCENE_H
+
+typedef struct	s_vec3 {
+    double	x;
+    double	y;
+    double	z;
+} t_vec3;
+
+typedef struct	s_color {
+    int	r;
+    int	g;
+    int	b;
+} t_color;
 
 typedef struct  s_ambient {
 	double      	ratio;
@@ -28,6 +40,7 @@ typedef struct  s_light {
 	t_vec3      	position;
 	double      	brightness;
 	t_color     	color;
+	struct s_light	*next;
 } t_light;
 
 typedef struct  s_sphere {
