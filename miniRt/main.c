@@ -109,7 +109,7 @@ int main(int argc, char **argv)
     return (0);
 }*/
 
-int main()
+/*int main()
 {
     t_vec3 v = {1.0, 2.0, 3.0};
     t_vec3 result = vec3_scale(v, 2.5);
@@ -118,4 +118,51 @@ int main()
     printf("Escalado: (%f, %f, %f)\n", result.x, result.y, result.z);
 
     return 0;
+}*/
+
+#include "includes/miniRT.h"
+#include <stdio.h>
+
+int main(void)
+{
+	t_scene scene;
+	t_sphere sphere;
+	t_light light;
+	t_color result;
+	t_ray ray;
+
+	// ---------- Configurar esfera ----------
+	sphere.center = (t_vec3){0, 0, 10};
+	sphere.radius = 1.0;
+	sphere.color = (t_color){200, 0, 0};
+	sphere.next = NULL;
+
+	scene.spheres = &sphere;
+	scene.planes = NULL;
+	scene.cylinders = NULL;
+
+	// ---------- Configurar luz ----------
+	light.position = (t_vec3){-2, 2, 0};
+	light.brightness = 0.7;
+	light.color = (t_color){255, 255, 255};
+	light.next = NULL;
+
+	scene.lights = &light;
+
+	// ---------- Configurar luz ambiental ----------
+	scene.ambient.ratio = 0.2;
+	scene.ambient.color = (t_color){255, 255, 255};
+
+	// ---------- Configurar rayo ----------
+	ray.origin = (t_vec3){0, 0, 0};
+	ray.direction = vec3_normalize((t_vec3){0, 0, 1});
+
+	// ---------- Lanzar rayo ----------
+	result = trace_ray(ray, &scene);
+
+	// ---------- Imprimir resultado ----------
+	printf("🟢 trace_ray result: R = %d, G = %d, B = %d\n",
+		result.r, result.g, result.b);
+
+	return 0;
 }
